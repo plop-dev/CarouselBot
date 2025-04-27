@@ -50,7 +50,9 @@ def main():
     answers = getanswers.get_answers(quiz_id, token)
     console.print(f"[+] Answers: {len(answers)}", style=SUCCESS)
 
-    response = console.input("[*] Complete revision? y/n", style=INFO)
+    response = console.input(
+        "[bold yellow][*] Complete revision (y/n)?[/]",
+    )
 
     if response not in ("y", "yes"):
         console.print("[*] Starting revision...", style=INFO)
