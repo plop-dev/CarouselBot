@@ -56,7 +56,7 @@ def main():
 
     if response in ("y", "yes"):
         console.print("[*] Starting revision...", style=INFO)
-        res = completerevision()
+        res = completerevision.complete_revision(quiz_id, token)
 
         if res:
             console.print("[+] Revision completed successfully", style=SUCCESS)
