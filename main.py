@@ -1,5 +1,6 @@
 import gettoken
 import getanswers
+import completerevision
 import re
 from rich.console import Console
 from rich.padding import Padding
@@ -48,6 +49,19 @@ def main():
     console.print("[*] Getting the answers...", style=INFO)
     answers = getanswers.get_answers(quiz_id, token)
     console.print(f"[+] Answers: {len(answers)}", style=SUCCESS)
+
+    response = console.input("[*] Complete revision? y/n", style=INFO)
+
+    if response not in ("y", "yes"):
+        console.print("[*] Starting revision...", style=INFO)
+        res = completerevision()
+
+        if res:
+            console.print("[+] Revision completed successfully", style=SUCCESS)
+        else:
+            console.print("[!] Revision failed", style="bold red")
+    else:
+        console.print("[*] Skipping revision...", style=INFO)
 
     for i in range(len(answers)):
         console.print(
