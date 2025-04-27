@@ -51,10 +51,10 @@ def main():
     console.print(f"[+] Answers: {len(answers)}", style=SUCCESS)
 
     response = console.input(
-        "[bold yellow][*] Complete revision (y/n)?[/]",
+        "[bold yellow][*] Complete revision (y/n)? [/]",
     )
 
-    if response not in ("y", "yes"):
+    if response in ("y", "yes"):
         console.print("[*] Starting revision...", style=INFO)
         res = completerevision()
 
