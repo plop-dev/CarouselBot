@@ -19,7 +19,7 @@ def complete_revision(quiz_id: str, token: str):
     response = request.json()
 
     try:
-        _ = response["data"]["quiz"]["data"]["questions"]["data"]
+        _ = response["data"]["questions"]
     except KeyError:
         print("Error token key not found: ", response)
         return None
