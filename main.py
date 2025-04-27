@@ -5,19 +5,18 @@ from rich.console import Console
 from rich.padding import Padding
 import dotenv
 import os
+import argparse
 
 dotenv.load_dotenv()
 
 global console
 console = Console()
 
-
 INFO = os.getenv("INFO")
 SUCCESS = os.getenv("SUCCESS")
 
 FORENAME = os.getenv("FORENAME")
 SURNAME = os.getenv("SURNAME")
-LINK = os.getenv("LINK")
 
 
 def get_quiz_id(link):
@@ -30,10 +29,16 @@ def get_quiz_id(link):
 
 
 def main():
+    parser = argparse.ArgumentParser(description="CarouselBot - Quiz Answer Fetcher")
+    parser.add_argument("link", help="Quiz link")
+    args = parser.parse_args()
+
+    link = args.link
+
     console.print("[*] Starting the script...", style=INFO)
 
     console.print("[*] Getting the quiz ID...", style=INFO)
-    quiz_id = get_quiz_id(LINK)
+    quiz_id = get_quiz_id(link)
     console.print(f"[+] Quiz ID: {quiz_id}", style=SUCCESS)
 
     console.print("[*] Getting the token...", style=INFO)
@@ -47,7 +52,8 @@ def main():
     for i in range(len(answers)):
         console.print(
             Padding(
-                f"[u][{INFO}]Question {i+1}[/]:[/]\n{answers[i]['question']}\n", (0, 2)
+                f"[u][{INFO}]Question {i + 1}[/]:[/]\n{answers[i]['question']}\n",
+                (0, 2),
             )
         )
         console.print(
